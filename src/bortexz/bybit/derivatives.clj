@@ -308,7 +308,7 @@
    resocket/reconnector. You can subscribe to topics as if it were a core.async pub, and the client will internally
    handle subscriptions. i.e `(a/sub ws-client 'orderbook.50.BTCUSDT' (a/chan) close?)`"
   [{:keys [auth environment channel errors-ch pub-opts ws-opts reconnector-opts]}]
-  (let [auth? (ws-auth-channels environment)
+  (let [auth? (ws-auth-channels channel)
         _ (when (and auth? (not (and (:api-key auth) (:api-secret auth))))
             (throw (ex-info "api-key/secret not specified to auth endpoint"
                             {::err/category ::err/forbidden
